@@ -58,9 +58,9 @@ jobs:
       - run: echo globalping_${{ env.VERSION_NAME }}_linux_amd64
       - run: ls -la
       - name: Push .deb to 0x0.st
-        run: curl -F'file=globalping_${{ env.VERSION_NAME }}_linux_amd64.deb' https://0x0.st
+        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.deb' https://0x0.st
       - name: Push .rpm to 0x0.st
-        run: curl -F'file=globalping_${{ env.VERSION_NAME }}_linux_amd64.rpm' https://0x0.st
+        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.rpm' https://0x0.st
       - uses: jsdelivr/upload-packagecloud@v3
         with:
           DEB-PACKAGE-NAME: globalping_${{ env.VERSION_NAME }}_linux_amd64.deb
