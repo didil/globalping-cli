@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   goreleaser:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -57,6 +57,10 @@ jobs:
       - run: echo "VERSION_NAME=${GITHUB_REF_NAME:1}" >> $GITHUB_ENV
       - run: echo globalping_${{ env.VERSION_NAME }}_linux_amd64
       - run: ls -la
+      - name: Push .deb to file.io
+        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.deb' https://file.io
+      - name: Push .rpm to file.io
+        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.rpm' https://file.io
       - uses: jsdelivr/upload-packagecloud@v3
         with:
           DEB-PACKAGE-NAME: globalping_${{ env.VERSION_NAME }}_linux_amd64.deb
