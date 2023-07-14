@@ -27,7 +27,7 @@ jobs:
 
       - uses: goreleaser/goreleaser-action@v4
         with:
-          version: v1.19.2
+          version: af044c0995fe
           args: release --clean --skip-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GHTOKEN_GORELEASER }}
@@ -57,10 +57,6 @@ jobs:
       - run: echo "VERSION_NAME=${GITHUB_REF_NAME:1}" >> $GITHUB_ENV
       - run: echo globalping_${{ env.VERSION_NAME }}_linux_amd64
       - run: ls -la
-      - name: Push .deb to file.io
-        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.deb' https://file.io
-      - name: Push .rpm to file.io
-        run: curl -F'file=@globalping_${{ env.VERSION_NAME }}_linux_amd64.rpm' https://file.io
       - uses: jsdelivr/upload-packagecloud@v3
         with:
           DEB-PACKAGE-NAME: globalping_${{ env.VERSION_NAME }}_linux_amd64.deb
