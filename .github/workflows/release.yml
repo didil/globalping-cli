@@ -27,7 +27,7 @@ jobs:
 
       - uses: goreleaser/goreleaser-action@v4
         with:
-          version: af044c0995fe
+          version: v1.20.0
           args: release --clean --skip-publish
         env:
           GITHUB_TOKEN: ${{ secrets.GHTOKEN_GORELEASER }}
